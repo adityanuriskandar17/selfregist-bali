@@ -1,8 +1,97 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #000000;
+  --foreground: #ffffff;
+
+  /* blue membership */
+  --blue-card-gradient: linear-gradient(135deg, #012655 50%, #000812 80%);
+  --blue-card-50: #012655;
+  --blue-card-80: #000812;
+
+  --blue-layer-gradient: linear-gradient(180deg, #000812 0%, #146EF5 30%);
+  --blue-layer-0: #000812;
+  --blue-layer-30: #146EF5;
+
+  --blue-text: #FFFFFF;
+  --blue-text-alt: #AAC1FF;
+  --blue-text-grey: #898989;
+
+  --blue-stroke-gradient: linear-gradient(180deg, #01ACFF 0%, #011F3B 100%);
+  --blue-stroke-0: #01ACFF;
+  --blue-stroke-100: #011F3B;
+
+  --blue-icon-gradient: linear-gradient(135deg, #146EF5 0%, #1B347C 100%);
+  --blue-icon-0: #146EF5;
+  --blue-icon-100: #1B347C;
+
+  --blue-button: #0B57E0;
+  --blue-button-alt: #1276bc;
+
+  /* ultra membership */
+  --ultra-card-gradient: linear-gradient(135deg, #a63049 5%, #000812 95%);
+  --ultra-card-30: #80172E;
+  --ultra-card-80: #000812;
+
+  --ultra-layer-gradient: linear-gradient(180deg, #000812 0%, #ED1C24 30%);
+  --ultra-layer-0: #000812;
+  --ultra-layer-30: #ED1C24;
+
+  --ultra-text: #FFFFFF;
+  --ultra-text-alt: #FFC1C3;
+  --ultra-text-grey: #898989;
+
+  --ultra-stroke-gradient: linear-gradient(180deg, #ED1C24 0%, #350D0F 100%);
+  --ultra-stroke-0: #ED1C24;
+  --ultra-stroke-100: #350D0F;
+
+  --ultra-icon-gradient: linear-gradient(135deg, #ED1C24 0%, #7E0E12 100%);
+  --ultra-icon-0: #ED1C24;
+  --ultra-icon-100: #7E0E12;
+
+  --ultra-button: #ED1C24;
+  --ultra-button-alt: #f47176;
+  --ultra-button-prev: #ca4146;
+
+  --ultra-badge-gradient: linear-gradient(90deg, #FECB80 0%, #C0893E 100%);
+  --ultra-badge-0: #FECB80;
+  --ultra-badge-100: #C0893E;
+
+  /* pilates membership */
+  --pilates-card-gradient: linear-gradient(135deg, #B39253 5%, #5B4B36 30%, #261B11 90%);
+  --pilates-card-20: #FEE6BA;
+  --pilates-card-50: #5B4B36;
+  --pilates-card-80: #261B11;
+
+  --pilates-text: #FFFFFF;
+  --pilates-text-alt: #EBC998;
+  --pilates-text-grey: #898989;
+
+  --pilates-stroke-gradient: linear-gradient(180deg, #FEE6BA 0%, #1F1711 100%);
+  --pilates-stroke-0: #FEE6BA;
+  --pilates-stroke-100: #1F1711;
+
+  --pilates-icon-gradient: linear-gradient(135deg, #D1BC98 0%, #9F835A 100%);
+  --pilates-icon-0: #D1BC98;
+  --pilates-icon-100: #9F835A;
+
+  --pilates-button-gradient: linear-gradient(135deg, #D1BC98 0%, #9F835A 100%);
+  --pilates-button-0: #D1BC98;
+  --pilates-button-100: #9F835A;
+
+  /* INFINITE MEMBERSHIP */
+  --infinite-card-gradient: linear-gradient(135deg, #A8A8A8 20%, #707070 40%, #464444 70%);
+  --infinite-card-20: #A8A8A8;
+  --infinite-card-30: #707070;
+  --infinite-card-70: #464444;
+
+  --infinite-text: #FFFFFF;
+  --infinite-text-alt: #EBEBEB;
+  --infinite-text-grey: #898989;
+
+  --infinite-button-gradient: linear-gradient(to right, #655f54, #866f49);
+  --infinite-button-0: #655f54;
+  --infinite-button-100: #866f49;
 }
 
 @theme inline {
@@ -10,13 +99,6 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
