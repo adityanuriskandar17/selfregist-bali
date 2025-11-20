@@ -5,9 +5,16 @@ import { Button } from "@/components/ui/button";
 import { Check, Star } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-interface Feature {
+const YogaIcon = ({ className, style }: { className?: string; style?: React.CSSProperties }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className} style={style}>
+    <path d="M13 2C11.9 2 11 2.9 11 4C11 5.11 11.9 6 13 6C14.11 6 15 5.11 15 4C15 2.9 14.11 2 13 2M4 7V9H10V15L4.93 20.07L6.34 21.5L13.06 14.77L17 17.13V21H19V16.57C19 16.21 18.82 15.89 18.5 15.71L15 13.6V9H21V7H4Z" />
+  </svg>
+);
+
+export interface Feature {
   text: string;
   premium?: boolean;
+  icon?: 'yoga';
 }
 
 interface MembershipCardProps {
@@ -21,7 +28,7 @@ interface MembershipCardProps {
   badgeImage?: string;
 }
 
-const MembershipCard = ({
+const MembershipCard: React.FC<MembershipCardProps> = ({
   title,
   price,
   originalPrice,
@@ -30,7 +37,7 @@ const MembershipCard = ({
   popular = false,
   isInfinite = false,
   badgeImage,
-}: MembershipCardProps) => {
+}) => {
   const cardStyles = {
     blue: {
       background: "var(--blue-card-gradient), var(--blue-layer-gradient)",
@@ -38,7 +45,7 @@ const MembershipCard = ({
       boxShadow: "0 2px 24px 0 #146ef555",
     },
     red: {
-      backgroundImage: "var(--ultra-card-gradient), var(--ultra-layer-gradient)",
+      background: "var(--ultra-card-gradient), var(--ultra-layer-gradient)",
       border: "1.5px solid var(--ultra-layer-30)",
       boxShadow: "0 2px 24px 0 var(--ultra-stroke-gradient)",
     },
@@ -81,6 +88,13 @@ const MembershipCard = ({
     },
   };
 
+  const starColors: Record<string, string> = {
+    blue: "#146ef5",
+    red: "#ed1c24",
+    gold: "#FFD700",
+    silver: "#A8A8A8",
+  };
+
   const buttonStyles = {
     blue: {
       background: "#146ef5",
@@ -99,109 +113,87 @@ const MembershipCard = ({
     },
     silver: {
       background: "var(--infinite-button-gradient)",
-      boxShadow: "0 0 16px 4px var(--infinite-card-70)",
+      boxShadow: "0 0 16px 4px #655f5480",
       color: "white",
     },
   };
 
-  const starColors = {
-    blue: "#3fa7ff",
-    red: "#ED1C24",
-    gold: "#e5c990",
-    silver: "#9ca3af",
-  };
-
   return (
-    <div
-      className="relative rounded-[22px] p-0 transition-all duration-300 hover:scale-[1.02] overflow-hidden group/card max-w-[360px] h-full flex flex-col mx-auto"
-      style={cardStyles[gradient]}
-    >
-      {/* Shiny hover effect */}
-      <div className="absolute inset-0 opacity-0 group-hover/card:opacity-100 transition-opacity duration-500 pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/card:translate-x-full transition-transform duration-1000 ease-in-out" />
-      </div>
-
-      {popular && (
-        <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-teal-500 to-cyan-500 px-4 py-1 rounded-full z-10">
-          <div className="flex items-center gap-1">
-            <Star className="w-3 h-3 fill-white" />
-            <span className="text-xs font-bold text-white">POPULAR</span>
+    <div className="relative h-full">
+      <div
+        className="relative h-full rounded-3xl overflow-hidden transition-transform duration-300 hover:scale-[1.02]"
+        style={{
+          border: cardStyles[gradient].border,
+          boxShadow: cardStyles[gradient].boxShadow,
+          background: cardStyles[gradient].background,
+        }}
+      >
+        <div className="relative h-full p-6 flex flex-col">
+          {/* Shiny hover effect */}
+          <div className="absolute inset-0 opacity-0 group-hover/card:opacity-100 transition-opacity duration-500 pointer-events-none">
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/card:translate-x-full transition-transform duration-1000 ease-in-out" />
           </div>
-        </div>
-      )}
 
-      <div className="p-6 md:p-8 relative z-10 flex flex-col flex-1">
-        {/* Header with Badge */}
-        <div className="mb-4">
-          {badgeImage ? (
-            <>
+          {popular && (
+            <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-teal-500 to-cyan-500 px-4 py-1 rounded-full z-10">
+              <div className="flex items-center gap-1">
+                <Star className="w-3 h-3 fill-white" />
+                <span className="text-xs font-bold text-white">POPULAR</span>
+              </div>
+            </div>
+          )}
+
+          {/* Badge Image */}
+          <div className="mb-2 relative h-9 w-[320px]">
+            {badgeImage && (
               <Image
                 src={badgeImage}
-                alt={title}
-                width={140}
-                height={gradient === "silver" ? 50 : gradient === "gold" ? 40 : 30}
-                className={cn(
-                  "object-contain object-left mb-1",
-                  gradient === "blue" && "w-[320px] h-[36px]",
-                  gradient === "red" && "w-[320px] h-[36px]",
-                  gradient === "gold" && "w-[320px] h-[36px]",
-                  gradient === "silver" && "w-[320px] h-[36px]"
-                )}
-                style={{ display: 'block' }}
+                alt={`${title} Badge`}
+                fill
+                className="object-contain object-left"
+                priority
               />
-              <h4
-                className="text-4xl font-bold"
-                style={{ color: textColors[gradient].title }}
-              >
-                Membership
-              </h4>
-            </>
-          ) : (
-            <h4
-              className="text-4xl font-bold"
-              style={{ color: textColors[gradient].title }}
-            >
-              {title}
-            </h4>
-          )}
-        </div>
-
-        {/* Pricing */}
-        <div className="mb-6">
-          <span className="text-sm opacity-70">Start from</span>
-          {originalPrice && (
-            <>
-              <br />
-              <span className="line-through text-gray-400 text-xs">
-                {originalPrice}
-              </span>
-            </>
-          )}
-          <div className="flex items-baseline mt-1">
-            <span className="text-sm font-normal mr-1" style={{ color: textColors[gradient].price }}>
-              Rp
-            </span>
-            <span
-              className="text-6xl font-normal leading-none"
-              style={{ color: textColors[gradient].price }}
-            >
-              {price}
-            </span>
-            <span className="text-sm font-normal ml-1" style={{ color: textColors[gradient].price }}>
-              /K/month
-            </span>
+            )}
           </div>
-        </div>
 
-        <hr className="my-4 border-gray-600 opacity-30" />
+          {/* Pricing */}
+          <div className="mb-6">
+            <span className="text-sm opacity-70">Start from</span>
+            {originalPrice && (
+              <>
+                <br />
+                <span className="line-through text-gray-400 text-xs">
+                  {originalPrice}
+                </span>
+              </>
+            )}
+            <div className="flex items-baseline mt-1">
+              <span className="text-sm font-normal mr-1 font-[family-name:var(--font-poppins)]" style={{ color: textColors[gradient].price, fontFamily: 'var(--font-poppins)' }}>
+                Rp
+              </span>
+              <span
+                className="text-6xl font-normal leading-none font-[family-name:var(--font-poppins)]"
+                style={{ color: textColors[gradient].price, fontFamily: 'var(--font-poppins)' }}
+              >
+                {price}
+              </span>
+              <span className="text-sm font-normal ml-1 font-[family-name:var(--font-poppins)]" style={{ color: textColors[gradient].price, fontFamily: 'var(--font-poppins)' }}>
+                /K/month
+              </span>
+            </div>
+          </div>
 
-        {/* Features */}
-        <div className="flex-1 flex flex-col">
+          {/* Features */}
           <span className="font-bold mb-2 block">Benefit:</span>
           <ul className="space-y-2 flex-1">
             {features.map((feature, index) => (
               <li key={index} className="flex items-start">
-                {feature.premium ? (
+                {feature.icon === 'yoga' ? (
+                  <YogaIcon
+                    className="w-5 h-5 shrink-0 mt-0.5"
+                    style={{ color: starColors[gradient] }}
+                  />
+                ) : feature.premium ? (
                   <Check className="w-5 h-5 text-white shrink-0 mt-0.5" />
                 ) : (
                   <Star

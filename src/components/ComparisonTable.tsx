@@ -1,11 +1,98 @@
 "use client";
 
 import { Check, Info, X } from "lucide-react";
-import { useState } from "react";
+import { useState, ReactNode } from "react";
 import Image from "next/image";
 
+const YogaIcon = ({ className }: { className?: string }) => (
+    <svg
+        className={className}
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg"
+    >
+        <path d="M13 2C11.9 2 11 2.9 11 4C11 5.11 11.9 6 13 6C14.11 6 15 5.11 15 4C15 2.9 14.11 2 13 2M4 7V9H10V15L4.93 20.07L6.34 21.5L13.06 14.77L17 17.13V21H19V16.57C19 16.21 18.82 15.89 18.5 15.71L15 13.6V9H21V7H4Z" />
+    </svg>
+);
+
+const GroupIcon = ({ className }: { className?: string }) => (
+    <svg
+        className={className}
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg"
+    >
+        <path d="M12,5.5A3.5,3.5 0 0,1 15.5,9A3.5,3.5 0 0,1 12,12.5A3.5,3.5 0 0,1 8.5,9A3.5,3.5 0 0,1 12,5.5M5,8C5.56,8 6.08,8.15 6.53,8.42C6.38,9.85 6.8,11.27 7.66,12.38C7.16,13.34 6.16,14 5,14A3,3 0 0,1 2,11A3,3 0 0,1 5,8M19,8A3,3 0 0,1 22,11A3,3 0 0,1 19,14C17.84,14 16.84,13.34 16.34,12.38C17.2,11.27 17.62,9.85 17.47,8.42C17.92,8.15 18.44,8 19,8M5.5,18.25C5.5,16.18 8.41,14.5 12,14.5C15.59,14.5 18.5,16.18 18.5,18.25V20H5.5V18.25M0,20V18.5C0,17.11 1.89,15.94 4.45,15.6C3.86,16.28 3.5,17.22 3.5,18.25V20H0M24,20H20.5V18.25C20.5,17.22 20.14,16.28 19.55,15.6C22.11,15.94 24,17.11 24,18.5V20Z" />
+    </svg>
+);
+
+const HangerIcon = ({ className }: { className?: string }) => (
+    <svg
+        className={className}
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg"
+    >
+        <path d="M12 4A3.5 3.5 0 0 0 8.5 7.5H10.5A1.5 1.5 0 0 1 12 6A1.5 1.5 0 0 1 13.5 7.5A1.5 1.5 0 0 1 12 9C11.45 9 11 9.45 11 10V11.75L2.4 18.2A1 1 0 0 0 3 20H21A1 1 0 0 0 21.6 18.2L13 11.75V10.85A3.5 3.5 0 0 0 15.5 7.5A3.5 3.5 0 0 0 12 4M12 13.5L18 18H6Z" />
+    </svg>
+);
+
+const ShowerIcon = ({ className }: { className?: string }) => (
+    <svg
+        className={className}
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg"
+    >
+        <path d="M21,14V15C21,16.91 19.93,18.57 18.35,19.41L19,22H17L16.5,20C16.33,20 16.17,20 16,20H8C7.83,20 7.67,20 7.5,20L7,22H5L5.65,19.41C4.07,18.57 3,16.91 3,15V14H2V12H20V5A1,1 0 0,0 19,4C18.5,4 18.12,4.34 18,4.79C18.63,5.33 19,6.13 19,7H13A3,3 0 0,1 16,4C16.06,4 16.11,4 16.17,4C16.58,2.84 17.69,2 19,2A3,3 0 0,1 22,5V14H21V14M19,14H5V15A3,3 0 0,0 8,18H16A3,3 0 0,0 19,15V14Z" />
+    </svg>
+);
+
+const BeachIcon = ({ className }: { className?: string }) => (
+    <svg
+        className={className}
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg"
+    >
+    </svg>
+);
+
+const CreationIcon = ({ className }: { className?: string }) => (
+    <svg
+        className={className}
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg"
+    >
+        <path d="M19,1L17.74,3.75L15,5L17.74,6.26L19,9L20.25,6.26L23,5L20.25,3.75M9,4L6.5,9.5L1,12L6.5,14.5L9,20L11.5,14.5L17,12L11.5,9.5M19,15L17.74,17.74L15,19L17.74,20.25L19,23L20.25,20.25L23,19L20.25,17.74" />
+    </svg>
+);
+
+const AccountStarIcon = ({ className }: { className?: string }) => (
+    <svg
+        className={className}
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg"
+    >
+        <path d="M15,14C12.33,14 7,15.33 7,18V20H23V18C23,15.33 17.67,14 15,14M15,12A4,4 0 0,0 19,8A4,4 0 0,0 15,4A4,4 0 0,0 11,8A4,4 0 0,0 15,12M5,13.28L7.45,14.77L6.8,11.96L9,10.08L6.11,9.83L5,7.19L3.87,9.83L1,10.08L3.18,11.96L2.5,14.77L5,13.28Z" />
+    </svg>
+);
+
+const MedalIcon = ({ className }: { className?: string }) => (
+    <svg
+        className={className}
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg"
+    >
+        <path d="M20,2H4V4L9.81,8.36C6.14,9.57 4.14,13.53 5.35,17.2C6.56,20.87 10.5,22.87 14.19,21.66C17.86,20.45 19.86,16.5 18.65,12.82C17.95,10.71 16.3,9.05 14.19,8.36L20,4V2M14.94,19.5L12,17.78L9.06,19.5L9.84,16.17L7.25,13.93L10.66,13.64L12,10.5L13.34,13.64L16.75,13.93L14.16,16.17L14.94,19.5Z" />
+    </svg>
+);
+
 interface Benefit {
-    icon: string;
+    icon: ReactNode;
     title: string;
     description?: string;
     subItems?: string[];
@@ -41,7 +128,7 @@ const benefits: Benefit[] = [
         hasInfo: true,
     },
     {
-        icon: "⭐",
+        icon: <YogaIcon className="w-5 h-5 text-white" />,
         title: "Unlimited to all Group Pilates classes",
         subItems: [
             "Reformer Pilates (Basic & Flow)",
@@ -53,21 +140,21 @@ const benefits: Benefit[] = [
         pilates: true,
     },
     {
-        icon: "👥",
+        icon: <GroupIcon className="w-5 h-5 text-white" />,
         title: "Unlimited group exercise classes",
         blue: true,
         ultra: true,
         pilates: false,
     },
     {
-        icon: "🧖",
+        icon: <HangerIcon className="w-5 h-5 text-white" />,
         title: "FREE towel rental & access 24/7",
         blue: true,
         ultra: true,
         pilates: false,
     },
     {
-        icon: "🏊",
+        icon: <ShowerIcon className="w-5 h-5 text-white" />,
         title: "Access to steam room, sauna, jacuzzi, onsen, basketball court, pool, and more",
         blue: true,
         ultra: true,
@@ -75,21 +162,21 @@ const benefits: Benefit[] = [
         hasInfo: true,
     },
     {
-        icon: "🏖️",
+        icon: <BeachIcon className="w-5 h-5 text-white" />,
         title: "Access our one-of-a-kind FTL Beach Club (available at FTL Mampang)",
         blue: false,
         ultra: true,
         pilates: false,
     },
     {
-        icon: "💎",
+        icon: <CreationIcon className="w-5 h-5 text-white" />,
         title: "Premium changing room with Dyson amenities",
         blue: false,
         ultra: true,
         pilates: false,
     },
     {
-        icon: "👨‍🏫",
+        icon: <AccountStarIcon className="w-5 h-5 text-white" />,
         title: "Premium group exercise classes - led by highly experienced & certified instructors",
         blue: false,
         ultra: true,
@@ -97,7 +184,7 @@ const benefits: Benefit[] = [
         hasInfo: true,
     },
     {
-        icon: "💰",
+        icon: <MedalIcon className="w-5 h-5 text-white" />,
         title: "FTL Money Back Guarantee Program",
         blue: true,
         ultra: true,
@@ -158,14 +245,14 @@ const ComparisonTable = () => {
                                     <tr key={index} className="border-t border-zinc-800">
                                         <td className="bg-zinc-900/30 text-white p-2 md:p-4">
                                             <div className="flex items-start gap-2 md:gap-3">
-                                                <span className="text-base md:text-lg mt-0.5">{benefit.icon}</span>
+                                                <span className="text-base md:text-lg flex-shrink-0">{benefit.icon}</span>
                                                 <div className="flex-1">
-                                                    <div className="flex items-center gap-1 md:gap-2">
+                                                    <div className="flex items-start gap-1 md:gap-2">
                                                         <span className="text-xs md:text-sm font-normal">{benefit.title}</span>
                                                         {benefit.hasInfo && (
                                                             <button
                                                                 onClick={() => handleInfoClick(benefit.title)}
-                                                                className="flex-shrink-0 hover:scale-110 transition-transform"
+                                                                className="flex-shrink-0 hover:scale-110 transition-transform mt-0.5"
                                                             >
                                                                 <Info className="w-3 h-3 md:w-4 md:h-4 text-blue-500" />
                                                             </button>
