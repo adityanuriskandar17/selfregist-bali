@@ -121,8 +121,11 @@ const ComparisonTable = () => {
 
     return (
         <>
-            <div className="w-full bg-black py-12">
+            <div className="w-full py-12">
                 <div className="container mx-auto px-4">
+                    <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-8">
+                        COMPARISON BENEFITS
+                    </h2>
                     <div className="bg-zinc-900/50 rounded-3xl overflow-hidden border border-zinc-800">
                         <table className="w-full border-collapse">
                             {/* Header */}
@@ -247,6 +250,13 @@ const ComparisonTable = () => {
                                     <h3 className="text-2xl font-bold text-white mb-4">Facility Information</h3>
                                     <p className="text-gray-300 text-base leading-relaxed">
                                         Facility availability may differ by location. For complete details, please refer to the Club Locations section or contact FTL Support team for assistance.
+                                    </p>
+                                </>
+                            ) : selectedBenefit === "Premium group exercise classes - led by highly experienced & certified instructors" ? (
+                                <>
+                                    <h3 className="text-2xl font-bold text-white mb-4">Premium Classes</h3>
+                                    <p className="text-gray-300 text-base leading-relaxed">
+                                        Led by highly experienced and certified instructors for optimal results.
                                     </p>
                                 </>
                             ) : (

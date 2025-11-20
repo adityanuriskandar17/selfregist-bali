@@ -79,7 +79,7 @@ const StepIndicator = ({ currentStep = 1 }: StepIndicatorProps) => {
                             inset 0 2px 4px rgba(255, 255, 255, 0.2)
                           `,
                         transform: isCurrent ? "scale(1.25)" : "scale(1.1)",
-                        color: "#000",
+                        color: "#fff",
                       }
                       : undefined
                   }
