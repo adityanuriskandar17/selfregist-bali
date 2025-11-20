@@ -59,7 +59,7 @@ export default function Home() {
           </div>
 
           {/* Membership Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-[1800px] mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 max-w-[1800px] mx-auto">
             <MembershipCard
               title="BLUE Membership"
               price="499"

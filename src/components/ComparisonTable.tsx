@@ -126,27 +126,27 @@ const ComparisonTable = () => {
                     <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-8">
                         COMPARISON BENEFITS
                     </h2>
-                    <div className="bg-zinc-900/50 rounded-3xl overflow-hidden border border-zinc-800">
-                        <table className="w-full border-collapse">
+                    <div className="bg-zinc-900/50 rounded-2xl overflow-hidden border border-zinc-800">
+                        <table className="w-full border-collapse text-sm md:text-base">
                             {/* Header */}
                             <thead>
                                 <tr>
-                                    <th className="bg-zinc-900 text-white text-left p-6 font-semibold text-lg">
+                                    <th className="bg-zinc-900 text-white text-left p-3 md:p-5 font-semibold text-sm md:text-lg">
                                         Benefits
                                     </th>
-                                    <th className="bg-gradient-to-br from-blue-900 to-blue-950 text-white p-6 font-bold">
+                                    <th className="bg-gradient-to-br from-blue-900 to-blue-950 text-white p-2 md:p-4 font-bold">
                                         <div className="flex items-center justify-center">
-                                            <img src="/badge/blue.png" alt="BLUE" className="h-5 object-contain" />
+                                            <img src="/badge/blue.png" alt="BLUE" className="h-4 md:h-6 object-contain" />
                                         </div>
                                     </th>
-                                    <th className="bg-gradient-to-br from-red-900 to-red-950 text-white p-6 font-bold">
+                                    <th className="bg-gradient-to-br from-red-900 to-red-950 text-white p-2 md:p-4 font-bold">
                                         <div className="flex items-center justify-center">
-                                            <img src="/badge/ultra.png" alt="ULTRA" className="h-5 object-contain" />
+                                            <img src="/badge/ultra.png" alt="ULTRA" className="h-4 md:h-6 object-contain" />
                                         </div>
                                     </th>
-                                    <th className="bg-gradient-to-br from-yellow-900 to-yellow-950 text-white p-6 font-bold">
+                                    <th className="bg-gradient-to-br from-yellow-900 to-yellow-950 text-white p-2 md:p-4 font-bold">
                                         <div className="flex items-center justify-center">
-                                            <img src="/badge/pilates+.png" alt="PILATES+" className="h-5 object-contain" />
+                                            <img src="/badge/pilates+.png" alt="PILATES+" className="h-4 md:h-6 object-contain" />
                                         </div>
                                     </th>
                                 </tr>
@@ -156,23 +156,23 @@ const ComparisonTable = () => {
                             <tbody>
                                 {benefits.map((benefit, index) => (
                                     <tr key={index} className="border-t border-zinc-800">
-                                        <td className="bg-zinc-900/30 text-white p-5">
-                                            <div className="flex items-start gap-3">
-                                                <span className="text-lg mt-0.5">{benefit.icon}</span>
+                                        <td className="bg-zinc-900/30 text-white p-2 md:p-4">
+                                            <div className="flex items-start gap-2 md:gap-3">
+                                                <span className="text-base md:text-lg mt-0.5">{benefit.icon}</span>
                                                 <div className="flex-1">
-                                                    <div className="flex items-center gap-2">
-                                                        <span className="text-sm font-normal">{benefit.title}</span>
+                                                    <div className="flex items-center gap-1 md:gap-2">
+                                                        <span className="text-xs md:text-sm font-normal">{benefit.title}</span>
                                                         {benefit.hasInfo && (
                                                             <button
                                                                 onClick={() => handleInfoClick(benefit.title)}
                                                                 className="flex-shrink-0 hover:scale-110 transition-transform"
                                                             >
-                                                                <Info className="w-4 h-4 text-blue-500" />
+                                                                <Info className="w-3 h-3 md:w-4 md:h-4 text-blue-500" />
                                                             </button>
                                                         )}
                                                     </div>
                                                     {benefit.subItems && (
-                                                        <ul className="mt-2 ml-0 text-xs text-gray-400 space-y-1">
+                                                        <ul className="mt-1 md:mt-2 ml-0 text-[10px] md:text-xs text-gray-400 space-y-0.5 md:space-y-1">
                                                             {benefit.subItems.map((item, i) => (
                                                                 <li key={i} className="flex items-start gap-1">
                                                                     <span className="text-yellow-500">★</span>
@@ -184,36 +184,36 @@ const ComparisonTable = () => {
                                                 </div>
                                             </div>
                                         </td>
-                                        <td className="bg-blue-950/30 p-5">
+                                        <td className="bg-blue-950/30 p-2 md:p-4">
                                             <div className="flex justify-center">
                                                 {benefit.blue ? (
-                                                    <div className="w-9 h-9 rounded-full bg-blue-600 flex items-center justify-center border-2 border-blue-400">
-                                                        <Check className="w-5 h-5 text-white stroke-[3]" />
+                                                    <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-blue-600 flex items-center justify-center border md:border-2 border-blue-400">
+                                                        <Check className="w-4 h-4 md:w-5 md:h-5 text-white stroke-[2.5] md:stroke-[3]" />
                                                     </div>
                                                 ) : (
-                                                    <div className="w-9 h-9 rounded-full border-2 border-blue-900/50 bg-blue-950/20"></div>
+                                                    <div className="w-6 h-6 md:w-8 md:h-8 rounded-full border md:border-2 border-blue-900/50 bg-blue-950/20"></div>
                                                 )}
                                             </div>
                                         </td>
-                                        <td className="bg-red-950/30 p-5">
+                                        <td className="bg-red-950/30 p-2 md:p-4">
                                             <div className="flex justify-center">
                                                 {benefit.ultra ? (
-                                                    <div className="w-9 h-9 rounded-full bg-red-600 flex items-center justify-center border-2 border-red-400">
-                                                        <Check className="w-5 h-5 text-white stroke-[3]" />
+                                                    <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-red-600 flex items-center justify-center border md:border-2 border-red-400">
+                                                        <Check className="w-4 h-4 md:w-5 md:h-5 text-white stroke-[2.5] md:stroke-[3]" />
                                                     </div>
                                                 ) : (
-                                                    <div className="w-9 h-9 rounded-full border-2 border-red-900/50 bg-red-950/20"></div>
+                                                    <div className="w-6 h-6 md:w-8 md:h-8 rounded-full border md:border-2 border-red-900/50 bg-red-950/20"></div>
                                                 )}
                                             </div>
                                         </td>
-                                        <td className="bg-yellow-950/30 p-5">
+                                        <td className="bg-yellow-950/30 p-2 md:p-4">
                                             <div className="flex justify-center">
                                                 {benefit.pilates ? (
-                                                    <div className="w-9 h-9 rounded-full bg-yellow-700 flex items-center justify-center border-2 border-yellow-500">
-                                                        <Check className="w-5 h-5 text-white stroke-[3]" />
+                                                    <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-yellow-700 flex items-center justify-center border md:border-2 border-yellow-500">
+                                                        <Check className="w-4 h-4 md:w-5 md:h-5 text-white stroke-[2.5] md:stroke-[3]" />
                                                     </div>
                                                 ) : (
-                                                    <div className="w-9 h-9 rounded-full border-2 border-yellow-900/50 bg-yellow-950/20"></div>
+                                                    <div className="w-6 h-6 md:w-8 md:h-8 rounded-full border md:border-2 border-yellow-900/50 bg-yellow-950/20"></div>
                                                 )}
                                             </div>
                                         </td>
@@ -226,57 +226,59 @@ const ComparisonTable = () => {
             </div>
 
             {/* Modal */}
-            {showModal && (
-                <div
-                    className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4"
-                    onClick={handleCloseModal}
-                >
+            {
+                showModal && (
                     <div
-                        className="relative bg-zinc-900 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-auto border border-zinc-700"
-                        onClick={(e) => e.stopPropagation()}
+                        className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4"
+                        onClick={handleCloseModal}
                     >
-                        {/* Close Button */}
-                        <button
-                            onClick={handleCloseModal}
-                            className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-zinc-800 hover:bg-zinc-700 flex items-center justify-center transition-colors"
+                        <div
+                            className="relative bg-zinc-900 rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-auto border border-zinc-700"
+                            onClick={(e) => e.stopPropagation()}
                         >
-                            <X className="w-6 h-6 text-white" />
-                        </button>
+                            {/* Close Button */}
+                            <button
+                                onClick={handleCloseModal}
+                                className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-zinc-800 hover:bg-zinc-700 flex items-center justify-center transition-colors"
+                            >
+                                <X className="w-6 h-6 text-white" />
+                            </button>
 
-                        {/* Content */}
-                        <div className="p-6">
-                            {selectedBenefit === "Access to steam room, sauna, jacuzzi, onsen, basketball court, pool, and more" ? (
-                                <>
-                                    <h3 className="text-2xl font-bold text-white mb-4">Facility Information</h3>
-                                    <p className="text-gray-300 text-base leading-relaxed">
-                                        Facility availability may differ by location. For complete details, please refer to the Club Locations section or contact FTL Support team for assistance.
-                                    </p>
-                                </>
-                            ) : selectedBenefit === "Premium group exercise classes - led by highly experienced & certified instructors" ? (
-                                <>
-                                    <h3 className="text-2xl font-bold text-white mb-4">Premium Classes</h3>
-                                    <p className="text-gray-300 text-base leading-relaxed">
-                                        Led by highly experienced and certified instructors for optimal results.
-                                    </p>
-                                </>
-                            ) : (
-                                <>
-                                    <h3 className="text-2xl font-bold text-white mb-4">Club Locations</h3>
-                                    <div className="relative w-full">
-                                        <Image
-                                            src="/list_clubs.webp"
-                                            alt="Club Locations"
-                                            width={1200}
-                                            height={800}
-                                            className="w-full h-auto rounded-lg"
-                                        />
-                                    </div>
-                                </>
-                            )}
+                            {/* Content */}
+                            <div className="p-6">
+                                {selectedBenefit === "Access to steam room, sauna, jacuzzi, onsen, basketball court, pool, and more" ? (
+                                    <>
+                                        <h3 className="text-2xl font-bold text-white mb-4">Facility Information</h3>
+                                        <p className="text-gray-300 text-base leading-relaxed">
+                                            Facility availability may differ by location. For complete details, please refer to the Club Locations section or contact FTL Support team for assistance.
+                                        </p>
+                                    </>
+                                ) : selectedBenefit === "Premium group exercise classes - led by highly experienced & certified instructors" ? (
+                                    <>
+                                        <h3 className="text-2xl font-bold text-white mb-4">Premium Classes</h3>
+                                        <p className="text-gray-300 text-base leading-relaxed">
+                                            Led by highly experienced and certified instructors for optimal results.
+                                        </p>
+                                    </>
+                                ) : (
+                                    <>
+                                        <h3 className="text-2xl font-bold text-white mb-4">Club Locations</h3>
+                                        <div className="relative w-full">
+                                            <Image
+                                                src="/list_clubs.webp"
+                                                alt="Club Locations"
+                                                width={1200}
+                                                height={800}
+                                                className="w-full h-auto rounded-lg"
+                                            />
+                                        </div>
+                                    </>
+                                )}
+                            </div>
                         </div>
                     </div>
-                </div>
-            )}
+                )
+            }
         </>
     );
 };

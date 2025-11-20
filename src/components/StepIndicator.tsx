@@ -45,7 +45,7 @@ const StepIndicator = ({ currentStep = 1 }: StepIndicatorProps) => {
           <div
             className="h-full transition-all duration-500"
             style={{
-              background: '#146ef5',
+              background: '#3d3d6b',
               width: `${((currentStep - 1) / (steps.length - 1)) * 100}%`,
             }}
           />
@@ -71,12 +71,12 @@ const StepIndicator = ({ currentStep = 1 }: StepIndicatorProps) => {
                   style={
                     isCompleted || isCurrent
                       ? {
-                        background: "linear-gradient(145deg, #1a7fff, #0d5dd1)",
+                        background: "linear-gradient(145deg, #3d3d6b, #2a2a4a)",
                         boxShadow: `
-                            0 4px 8px rgba(20, 110, 245, 0.4),
-                            0 8px 16px rgba(20, 110, 245, 0.3),
+                            0 4px 8px rgba(45, 45, 75, 0.4),
+                            0 8px 16px rgba(45, 45, 75, 0.3),
                             inset 0 -2px 4px rgba(0, 0, 0, 0.3),
-                            inset 0 2px 4px rgba(255, 255, 255, 0.2)
+                            inset 0 2px 4px rgba(255, 255, 255, 0.1)
                           `,
                         transform: isCurrent ? "scale(1.25)" : "scale(1.1)",
                         color: "#fff",

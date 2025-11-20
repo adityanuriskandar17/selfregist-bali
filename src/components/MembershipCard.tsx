@@ -178,17 +178,17 @@ const MembershipCard = ({
             </>
           )}
           <div className="flex items-baseline mt-1">
-            <span className="text-sm font-semibold mr-1" style={{ color: textColors[gradient].price }}>
+            <span className="text-sm font-normal mr-1" style={{ color: textColors[gradient].price }}>
               Rp
             </span>
             <span
-              className="text-6xl font-extrabold leading-none"
+              className="text-6xl font-normal leading-none"
               style={{ color: textColors[gradient].price }}
             >
               {price}
             </span>
-            <span className="text-sm font-semibold ml-1" style={{ color: textColors[gradient].price }}>
-              K/month
+            <span className="text-sm font-normal ml-1" style={{ color: textColors[gradient].price }}>
+              /K/month
             </span>
           </div>
         </div>

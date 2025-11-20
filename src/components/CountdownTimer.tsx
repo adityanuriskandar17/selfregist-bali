@@ -2,29 +2,74 @@
 
 import { useState, useEffect } from "react";
 
+const COUNTDOWN_DURATION = (14 * 60 * 60 * 1000) + (40 * 60 * 1000); // 14h 40m in ms
+const STORAGE_KEY = 'ftlCountdownEndTime';
+
 const CountdownTimer = () => {
+  const [mounted, setMounted] = useState(false);
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
-    hours: 13,
-    minutes: 9,
-    seconds: 16,
+    hours: 14,
+    minutes: 40,
+    seconds: 0,
   });
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft((prev) => {
-        if (prev.seconds > 0) {
-          return { ...prev, seconds: prev.seconds - 1 };
-        } else if (prev.minutes > 0) {
-          return { ...prev, minutes: prev.minutes - 1, seconds: 59 };
-        } else if (prev.hours > 0) {
-          return { ...prev, hours: prev.hours - 1, minutes: 59, seconds: 59 };
-        } else if (prev.days > 0) {
-          return { days: prev.days - 1, hours: 23, minutes: 59, seconds: 59 };
+    setMounted(true);
+
+    // Get or create target end time
+    let targetTime: number;
+
+    try {
+      const stored = localStorage.getItem(STORAGE_KEY);
+
+      if (stored) {
+        targetTime = parseInt(stored);
+        console.log('Found stored time:', new Date(targetTime).toLocaleString());
+
+        // If expired, create new one
+        if (targetTime <= Date.now()) {
+          console.log('Stored time expired, creating new countdown');
+          targetTime = Date.now() + COUNTDOWN_DURATION;
+          localStorage.setItem(STORAGE_KEY, targetTime.toString());
         }
-        return prev;
-      });
-    }, 1000);
+      } else {
+        console.log('No stored time, creating new countdown');
+        targetTime = Date.now() + COUNTDOWN_DURATION;
+        localStorage.setItem(STORAGE_KEY, targetTime.toString());
+      }
+    } catch (error) {
+      console.error('localStorage error:', error);
+      targetTime = Date.now() + COUNTDOWN_DURATION;
+    }
+
+    const updateCountdown = () => {
+      const now = Date.now();
+      const difference = targetTime - now;
+
+      if (difference > 0) {
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+        setTimeLeft({ days, hours, minutes, seconds });
+      } else {
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+        // Clear expired countdown
+        try {
+          localStorage.removeItem(STORAGE_KEY);
+        } catch (e) {
+          console.error('Failed to remove expired countdown', e);
+        }
+      }
+    };
+
+    // Update immediately
+    updateCountdown();
+
+    // Update every second
+    const timer = setInterval(updateCountdown, 1000);
 
     return () => clearInterval(timer);
   }, []);
@@ -46,6 +91,19 @@ const CountdownTimer = () => {
       </div>
     </div>
   );
+
+  // Prevent hydration mismatch by not rendering until mounted
+  if (!mounted) {
+    return (
+      <div className="flex justify-center items-center gap-2 md:gap-4">
+        <TimeUnit value={14} label="Hours" />
+        <span className="text-2xl text-white mb-6">:</span>
+        <TimeUnit value={40} label="Minutes" />
+        <span className="text-2xl text-white mb-6">:</span>
+        <TimeUnit value={0} label="Seconds" />
+      </div>
+    );
+  }
 
   return (
     <div className="flex justify-center items-center gap-2 md:gap-4">
